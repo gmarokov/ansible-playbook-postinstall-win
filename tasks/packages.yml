@@ -1,0 +1,30 @@
+---
+- name: Install packages
+  win_chocolatey:
+    name: "{{ item }}"
+    state: present
+  loop:
+  - 'git'
+  - 'notepadplusplus'
+  - 'sql-server-management-studio'
+  - 'azure-data-studio'
+  - 'docker-cli'
+  - 'docker-compose'
+  - 'vscode'
+  - 'visualstudio2019community'
+  - 'sourcetree'
+  - 'nodejs-lts'
+  - 'postman'
+  - 'yarn'
+  - 'fiddler'
+  - 'velocity'
+  - 'firefox'
+  - 'googlechrome'
+  - 'libreoffice'
+  - 'lightshot'
+  - 'ditto'
+  - '7zip'
+  - 'winscp'
+  - 'skype'
+  - 'slack'
+  - 'spotify'

@@ -1,0 +1,12 @@
+---
+- hosts: local
+  become_method: runas
+  become_user: Administrator
+  pre_tasks:
+   - name: Install Chocolatey
+     win_shell: Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+  tasks:
+   - include: tasks/packages.yml
+  post_tasks:
+   - name: Reboot
+     win_reboot: 
