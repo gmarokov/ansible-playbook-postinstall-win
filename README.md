@@ -9,7 +9,7 @@ Post Windows installation Ansible script for provisioning dev machine using WSL 
 
 ## Usage
 Provide Windows username and password when pulling:   
-`ansible-pull -U https://github.com/gmarokov/ansible-win-postinstall.git -e ansible-user=your_win_user ansible_password=your_win_user_password`
+`ansible-pull -U https://github.com/gmarokov/ansible-win-postinstall.git -e ansible-user=your_win_user -e ansible_password=your_win_user_password`
 
 ## Script details 
 
