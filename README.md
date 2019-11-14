@@ -8,7 +8,7 @@ Post Windows installation Ansible script for provisioning dev machine using WSL 
 1. Enable and install WSL
 3. Install Ansible on WSL
 4. Enable WinRM on Windows
-5. Add `[local-win] 127.0.0.1` to your hosts in `/etc/ansible/hosts`
+5. Add `[local] 127.0.0.1` to your hosts in `/etc/ansible/hosts`
 
 More details about the installation can be found on this [blog post](https://dev.to/gmarokov/configure-your-dev-windows-machine-with-ansible-41aj).
 

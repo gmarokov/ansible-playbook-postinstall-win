@@ -1,5 +1,5 @@
 ---
-- hosts: local-win
+- hosts: local
   become_method: runas
   become_user: Administrator
   pre_tasks:
