@@ -1,4 +1,4 @@
-# Ansible playbook: Post installation Windows 10
+# Ansible playbook: Post Windows installation 
 Post Windows installation Ansible script for provisioning dev machine using WSL to run Ansible over WinRM.
 
 ## Installation
