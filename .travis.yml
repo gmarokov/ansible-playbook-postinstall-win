@@ -20,4 +20,4 @@ install:
 
 script:
   # Basic role syntax check
-  - ansible-playbook local-win.yml --syntax-check
+  - ansible-playbook playbook.yml --syntax-check
