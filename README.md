@@ -1,6 +1,8 @@
-# Ansible playbook: Post Windows installation 
-Post Windows installation Ansible script for provisioning dev machine using WSL to run Ansible over WinRM.
+Ansible playbook: Post Windows installation 
+=========
+[![Build Status](https://travis-ci.org/gmarokov/ansible-playbook-postinstall-win.svg?branch=master)](https://travis-ci.org/gmarokov/ansible-playbook-postinstall-win)
 
+Post Windows installation Ansible script for provisioning dev machine using WSL to run Ansible over WinRM.
 
 ## Installation
 1. Enable and install WSL
@@ -8,7 +10,7 @@ Post Windows installation Ansible script for provisioning dev machine using WSL 
 4. Enable WinRM on Windows
 5. Add `[local-win] 127.0.0.1` to your hosts in `/etc/ansible/hosts`
 
-More details about the installation can be found [here](https://dev.to/gmarokov/configure-your-dev-windows-machine-with-ansible-41aj)
+More details about the installation can be found on this [blog post](https://dev.to/gmarokov/configure-your-dev-windows-machine-with-ansible-41aj).
 
 ## Usage
 Provide Windows username and password when pulling:   
