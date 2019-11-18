@@ -28,3 +28,4 @@
   - 'skype'
   - 'slack'
   - 'spotify'
+  - 'dotnetcore-sdk --version=2.2.104'

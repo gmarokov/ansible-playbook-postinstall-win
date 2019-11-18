@@ -1,10 +1,14 @@
 ---
-- hosts: local
+- hosts: localhost
   become_method: runas
   become_user: Administrator
+  vars:
+    ansible_port: 5985
+    ansible_connection: winrm
+    ansible_winrm_transport: basic
   pre_tasks:
-   - name: Install Chocolatey
-     win_shell: Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+   - include: pre-tasks/init.yml
+   - include: pre-tasks/system.yml
   tasks:
    - include: tasks/packages.yml
   post_tasks:

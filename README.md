@@ -8,7 +8,6 @@ Post Windows installation Ansible script for provisioning dev machine using WSL 
 1. Enable and install WSL
 3. Install Ansible on WSL
 4. Enable WinRM on Windows
-5. Add `[local] 127.0.0.1` to your hosts in `/etc/ansible/hosts`
 
 More details about the installation can be found on this [blog post](https://dev.to/gmarokov/configure-your-dev-windows-machine-with-ansible-41aj).
 
@@ -20,6 +19,9 @@ Provide Windows username and password when pulling:
 
 ### Pre tasks
 - Install Chocolatey
+- Enable hidden files
+- Enable file extension
+- Uninstall all preinstalled win apps
 
 ### Tasks
 Install the following packages with Chocolatey: 
@@ -47,13 +49,10 @@ Install the following packages with Chocolatey:
  - skype
  - slack
  - spotify
+ - donetcore sdk 2.2
 
 ### Post tasks
 - Reboot
 
 ## Todos
-- Remove default apps
-- Enable hidden files
-- Enable file extensions
 - Scheduled task for Disc cleanup
-- Add .NET Core SDK

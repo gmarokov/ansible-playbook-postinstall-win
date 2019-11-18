@@ -1,0 +1,58 @@
+---
+- name: Enable file extension
+  win_shell: |
+    Push-Location
+    Set-Location HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    Set-ItemProperty . HideFileExt "0"
+    Pop-Location
+    Stop-Process -processName: Explorer -force
+
+- name: Show hidden files
+  win_shell: |
+    function Show-HiddenFile
+    {
+        param([Switch]$Off)
+        
+        $value = -not $Off.IsPresent
+        Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced `
+        -Name Hidden -Value $value -type DWORD
+
+        $shell = New-Object -ComObject Shell.Application
+        $shell.Windows() |
+            Where-Object { $_.document.url -eq $null } |
+            ForEach-Object { $_.Refresh() }
+    }
+    Show-HiddenFile() 
+
+- name: Remove default apps
+  win_shell: |
+    $AppArrayList = Get-AppxPackage -AllUsers -PackageTypeFilter Bundle | Select-Object -Property Name, PackageFullName | Sort-Object -Property Name
+
+    foreach ($App in $AppArrayList) {
+        # Exclude essential Windows apps
+        if (($App.Name -in "Microsoft.WindowsCalculator","Microsoft.WindowsStore","Microsoft.Appconnector","Microsoft.WindowsCommunicationsApps","Microsoft.WindowsSoundRecorder","Microsoft.Windows.Photos","Microsoft.BingWeather","Microsoft.WindowsCamera")) {
+            Write-Output -InputObject "Skipping essential Windows app: $($App.Name)"
+        }
+        # Remove AppxPackage and AppxProvisioningPackage
+        else {
+            # Gather package names
+            $AppPackageFullName = Get-AppxPackage -Name $App.Name | Select-Object -ExpandProperty PackageFullName
+            $AppProvisioningPackageName = Get-AppxProvisionedPackage -Online | Where-Object { $_.DisplayName -like $App.Name } | Select-Object -ExpandProperty PackageName
+            # Attempt to remove AppxPackage
+            try {
+                Write-Output -InputObject "Removing AppxPackage: $AppPackageFullName"
+                Remove-AppxPackage -Package $AppPackageFullName -ErrorAction Stop
+            }
+            catch [System.Exception] {
+                Write-Warning -Message $_.Exception.Message
+            }
+            # Attempt to remove AppxProvisioningPackage
+            try {
+                Write-Output -InputObject "Removing AppxProvisioningPackage: $AppProvisioningPackageName"
+                Remove-AppxProvisionedPackage -PackageName $AppProvisioningPackageName -Online -ErrorAction Stop
+            }
+            catch [System.Exception] {
+                Write-Warning -Message $_.Exception.Message
+            }
+        }
+    }
