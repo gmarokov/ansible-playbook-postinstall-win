@@ -2,7 +2,7 @@ Ansible playbook: Post Windows installation
 =========
 [![Build Status](https://travis-ci.org/gmarokov/ansible-playbook-postinstall-win.svg?branch=master)](https://travis-ci.org/gmarokov/ansible-playbook-postinstall-win)
 
-Post Windows installation Ansible script for provisioning dev machine using WSL to run Ansible over WinRM.
+Post Windows installation Ansible script for provisioning development machine using WSL to run Ansible over WinRM.
 
 ## Installation
 1. Enable and install WSL
@@ -53,6 +53,3 @@ Install the following packages with Chocolatey:
 
 ### Post tasks
 - Reboot
-
-## Todos
-- Scheduled task for Disc cleanup
